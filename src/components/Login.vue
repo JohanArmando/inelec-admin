@@ -60,13 +60,13 @@ export default {
   },
   methods: {
     onSubmit: function () {
+      this.error = false
       this.loading = true
       this.login(this.user).then(user => {
         this.loading = false
-        this.$router.replace(this.$route.query.redirect || '/admin/administrator')
+        this.$router.replace(this.$route.query.redirect || '/admin')
       })
       .catch(message => {
-        this.error = false
         this.loading = false
         this.error = true
       })

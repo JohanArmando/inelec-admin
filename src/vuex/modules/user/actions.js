@@ -1,7 +1,8 @@
 import {
   LOGIN,
   LOGOUT,
-  SIGNUP
+  SIGNUP,
+  SESSION
 } from './mutation-types'
 
 import axios from '../../../services/axios'
@@ -22,6 +23,22 @@ export function login ({ commit }, user) {
   })
 }
 
+export function session ({ commit }) {
+  return new Promise((resolve, reject) => {
+    axios.get('/auth/user')
+    .then(response => {
+      console.log(response.data)
+      commit(SESSION, response.data.user)
+      resolve(response.data.user)
+    })
+    .catch(error => {
+      delete localStorage.token
+      console.log('error')
+      reject(error)
+    })
+  })
+}
+
 export function signup ({ commit }, user) {
   return new Promise((resolve, reject) => {
     setTimeout(function () {
@@ -33,6 +50,9 @@ export function signup ({ commit }, user) {
 }
 
 export function logout ({ commit }, user) {
-  delete localStorage.token
-  commit(LOGOUT, user)
+  return new Promise((resolve, reject) => {
+    delete localStorage.token
+    commit(LOGOUT, user)
+    resolve(true)
+  })
 }

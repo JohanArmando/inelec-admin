@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import Admin from '@/components/admin/Admin'
+import Homeadmin from '@/components/admin/Home'
 
 Vue.use(Router)
 
@@ -31,6 +33,31 @@ export default new Router({
       name: 'Login',
       component: Login,
       beforeEnter: isLoging
+    },
+    {
+      path: '/admin',
+      beforeEnter: requireAuth,
+      component: Admin,
+      children: [
+        {
+          // UserProfile will be rendered inside User's <router-view>
+          // when /user/:id/profile is matched
+          path: '/',
+          component: Homeadmin
+        },
+        {
+          // UserProfile will be rendered inside User's <router-view>
+          // when /user/:id/profile is matched
+          path: 'profile',
+          component: Home
+        },
+        {
+          // UserPosts will be rendered inside User's <router-view>
+          // when /user/:id/posts is matched
+          path: 'posts',
+          component: Home
+        }
+      ]
     },
     {
       path: '/admin/administrator',

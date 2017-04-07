@@ -4,7 +4,8 @@ import * as actions from './actions'
 import {
   LOGIN,
   LOGOUT,
-  SIGNUP
+  SIGNUP,
+  SESSION
 } from './mutation-types'
 
 const initialState = {
@@ -18,6 +19,10 @@ const initialState = {
 // mutations
 const mutations = {
   [LOGIN] (state, user) {
+    state.user = user
+    state.stateLogin = true
+  },
+  [SESSION] (state, user) {
     state.user = user
     state.stateLogin = true
   },
