@@ -5,9 +5,13 @@
     <div class='app-main in' id='app-main'>
       <div class='wrapper'>
         <div class='app-content'>
-          <div class='wrap'>
+          <transition
+          name="custom-classes-transition"
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+          :duration="{ enter: 1500, leave: 0 }">>
             <router-view></router-view>
-          </div>
+          </transition>
           <div class='wrap p-t-0'>
             <footer-app></footer-app>
           </div>

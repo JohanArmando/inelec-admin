@@ -1,0 +1,36 @@
+<template lang="html">
+  <div class='user-card'>
+    <div class='media'>
+      <div class='media-left'>
+        <div class='avatar avatar-lg avatar-circle'>
+          <a href='#'>
+            <i class='fa fa-user-circle fa-3x'></i>
+          </a>
+        </div>
+      </div>
+      <div class='media-body'>
+        <h5 class='media-heading'>
+          <a class='title-color' href='#'>Ibraham Said</a>
+        </h5>
+        <p>
+          <a class='text-color' href='#'>Ver</a>
+          <a class='text-color' href='#'>Editar</a>
+          <a class='text-danger' href='#'>Eliminar</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+}
+</script>
+
+<style lang="css">
+  .user-card{
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+</style>

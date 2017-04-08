@@ -28,62 +28,49 @@
       <div class='menubar-scroll'>
         <div class='menubar-scroll-inner'>
           <ul class='app-menu'>
-            <li class='has-submenu'>
-              <a href='/admin/administrator'>
+            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/dashboard')}">
+              <router-link to="/admin">
                 <i class='menu-icon fa fa-home'></i>
                 <span class='menu-text'>Inicio</span>
-              </a>
+              </router-link>
             </li>
-            <li class='has-submenu'>
+            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/users')}">
               <a href='/admin/usuarios'>
                 <i class='menu-icon fa fa-users'></i>
                 <span class='menu-text'>Usuarios</span>
               </a>
             </li>
-            <li class='has-submenu'>
-              <a class='submenu-toggle' href='javascript:void(0)'>
+            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/clients')}">
+              <router-link to="/admin/clients">
                 <i class='menu-icon fa fa-address-card-o'></i>
                 <span class='menu-text'>Clientes</span>
-              </a>
+              </router-link>
             </li>
-            <li class='has-submenu'>
+            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/budgets')}">
               <a class='submenu-toggle' href='javascript:void(0)'>
                 <i class='menu-icon fa fa-file-o'></i>
                 <span class='menu-text'>Presupuesto</span>
               </a>
             </li>
-            <li>
+            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/emails')}">
               <a href=''>
                 <i class='menu-icon fa fa-envelope-o'></i>
                 <span class='menu-text'>Correos</span>
               </a>
             </li>
-            <li class='has-submenu'>
+            <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/web')}">
               <a class='submenu-toggle' href='javascript:void(0)'>
                 <i class='menu-icon fa fa-globe'></i>
                 <span class='menu-text'>Web</span>
-                <i class='menu-caret fa fa-caret-right'></i>
               </a>
-              <ul class='submenu'>
-                <li>
-                  <a href=''>
-                    <span class='menu-text'>Agregar articulo</span>
-                  </a>
-                </li>
-                <li>
-                  <a href=''>
-                    <span class='menu-text'>Agregar imagen</span>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <li class='has-submenu'>
+            <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/calendar')}">
               <a class='submenu-toggle' href='javascript:void(0)'>
                 <i class='menu-icon fa fa-calendar'></i>
                 <span class='menu-text'>Calendario</span>
               </a>
             </li>
-            <li class='has-submenu'>
+            <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/contacts')}">
               <a class='submenu-toggle' href='javascript:void(0)'>
                 <i class='menu-icon fa fa-user-circle'></i>
                 <span class='menu-text'>Contactos</span>
@@ -92,7 +79,7 @@
             <li class='menu-separator'>
               <hr>
             </li>
-            <li>
+            <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/help')}">
               <a href=''>
                 <i class='menu-icon fa fa-question'></i>
                 <span class='menu-text'>Ayuda</span>
@@ -113,11 +100,22 @@ export default {
       user: 'getUser'
     })
   },
-  methods: mapActions([
-    'logout'
-  ])
+  methods: {
+    ...mapActions([
+      'logout'
+    ]),
+    subIsActive (input) {
+      const paths = Array.isArray(input) ? input : [input]
+      return paths.some(path => {
+        return this.$route.path.indexOf(path) === 0 // current path starts with this path string
+      })
+    }
+  }
 }
 </script>
 
 <style lang="css">
+  .has-submenu a:hover, .has-submenu a:active, .has-submenu a:visited, .has-submenu a {
+    text-decoration: none !important;
+  }
 </style>

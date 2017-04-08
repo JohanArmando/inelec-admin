@@ -53,6 +53,6 @@ export function logout ({ commit }, user) {
   return new Promise((resolve, reject) => {
     delete localStorage.token
     commit(LOGOUT, user)
-    resolve(true)
+    resolve(user)
   })
 }

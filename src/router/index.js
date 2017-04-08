@@ -1,30 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { requireAuth, isAdmin, isLoging } from '../services/RoutesServices'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
 import Admin from '@/components/admin/Admin'
-import Homeadmin from '@/components/admin/Home'
+import Dashboard from '@/components/admin/Dashboard'
+import Clients from '@/components/admin/Clients'
+import ListClients from '@/components/admin/clients/ListClients'
+import NewClient from '@/components/admin/clients/NewClient'
 
 Vue.use(Router)
-
-function requireAuth (to, from, next) {
-  if (!localStorage.token) {
-    next({
-      path: '/login',
-      query: { redirect: to.fullPath }
-    })
-  } else {
-    next()
-  }
-}
-
-function isLoging (to, from, next) {
-  if (localStorage.token) {
-    next('/admin/administrator')
-  } else {
-    next()
-  }
-}
 
 export default new Router({
   routes: [
@@ -42,14 +27,36 @@ export default new Router({
         {
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
-          path: '/',
-          component: Homeadmin
+          path: '',
+          beforeEnter: isAdmin,
+          component: Dashboard
         },
         {
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
-          path: 'profile',
-          component: Home
+          path: 'dashboard',
+          component: Dashboard
+        },
+        {
+          path: 'clients',
+          component: Clients,
+          children: [
+            {
+              path: '',
+              component: ListClients,
+              beforeEnter: function (to, from, next) {
+                next('/admin/clients/list-clients')
+              }
+            },
+            {
+              path: 'list-clients',
+              component: ListClients
+            },
+            {
+              path: 'new-client',
+              component: NewClient
+            }
+          ]
         },
         {
           // UserPosts will be rendered inside User's <router-view>

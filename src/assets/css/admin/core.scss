@@ -2,6 +2,15 @@
 body {
   background: #edf0f5; }
 
+hr {
+    margin-top: 22px;
+    margin-bottom: 22px;
+    border: 0;
+    border-top: 1px solid #eeeeee !important;
+}
+.widget-header{
+  min-height: 50px
+}
 img {
   max-width: 100%;
   height: auto; }

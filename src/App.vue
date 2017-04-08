@@ -19,11 +19,10 @@ export default {
     }
   },
   mounted () {
-    console.log('ready')
     if (localStorage.token) {
       this.session().then(user => {
         this.loading = false
-        this.$router.replace(this.$route.query.redirect || '/admin')
+        this.$router.replace(this.$route.path || '/admin/dashboard')
       })
       .catch(message => {
         this.loading = false
