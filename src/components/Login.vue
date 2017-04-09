@@ -1,5 +1,5 @@
 <template>
-  <div class='simple-page'>
+  <div class='simple-page animated fadeIn'>
     <div id='back-to-home'>
       <a class='btn btn-primary' href='/'>
         <i class='fa fa-arrow-left'></i>
@@ -11,16 +11,27 @@
           <img class="img-responsive" style="width: 50%; margin-left: 25%;" src="../assets/logo/logo.png" alt="Logo" />
         </a>
       </div>
-      <div v-bind:class="[!error ? 'animated fadeIn' : 'animated shake']"  class='simple-page-form'  id='login-form'>
+      <transition
+      name="custom-classes-transition"
+      enter-active-class="animated fadeInDown"
+      leave-active-class="animated fadeOutUp"
+      :duration="{ enter: 1500, leave: 300 }">>
+      <div v-if="error" class="alert alert-danger">
+        <button type="button" class="close" v-on:click="error=false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        Email o password invalidos
+      </div>
+      </transition>
+
+      <div v-bind:class="[!error ? '' : 'animated shake']"  class='simple-page-form'  id='login-form'>
         <!-- %h4.form-title.m-b-xl.text-center Plataforma Administradora Inelec -->
         <form class="" v-on:submit.prevent="onSubmit">
           <div class="form-group" v-bind:class="{ 'has-error': error }">
             <input v-model="user.email" type="email" class="form-control"id='sign-in-email' placeholder='Email Coorporativo' required="">
-            <p class="help-block" v-show="error" >Email o password invalidos</p>
           </div>
           <div class="form-group" v-bind:class="{ 'has-error': error }">
             <input v-model="user.password" class="form-control" id='sign-in-password' placeholder='Password' type='password' required="">
-            <p class="help-block" v-show="error" >Email o password invalidos</p>
           </div>
           <div class='form-group m-b-xl'>
             <div class='checkbox checkbox-primary'>
