@@ -9,6 +9,9 @@ import ListClients from '@/components/admin/clients/ListClients'
 import NewClient from '@/components/admin/clients/NewClient'
 import Users from '@/components/admin/Users'
 import ListUsers from '@/components/admin/users/ListUsers'
+import NewUser from '@/components/admin/users/NewUsers'
+import RolUsers from '@/components/admin/users/RolUsers'
+import PermissionsUsers from '@/components/admin/users/PermissionsUsers'
 
 Vue.use(Router)
 
@@ -62,11 +65,32 @@ export default new Router({
         {
           path: 'users',
           component: Users,
-          childer: [
+          children: [
             {
               path: '',
+              component: ListUsers,
+              beforeEnter: function (to, from, next) {
+                next('/admin/users/list-users')
+              }
+            },
+            {
+              path: 'list-users',
               component: ListUsers
+
+            },
+            {
+              path: 'new-users',
+              component: NewUser
+            },
+            {
+              path: 'rol-users',
+              component: RolUsers
+            },
+            {
+              path: 'permissions-users',
+              component: PermissionsUsers
             }
+
           ]
         }
       ]

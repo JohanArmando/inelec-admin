@@ -4,22 +4,7 @@
       <div class="row no-gutter">
         <div class="col-md-12">
           <div class="widget">
-            <div class="m-b-lg nav-tabs-horizontal">
-                <ul role="tablist" class="nav nav-tabs">
-                  <li role="presentation" class="active">
-                    <a href="#">Usuarios</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#">Crear Usuario</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#">Rol</a>
-                  </li>
-                  <li role="presentation">
-                    <a href="#">Permisos</a>
-                  </li>
-                </ul>
-              </div>
+
               <div class="wrap">
                 <section class="app-content">
                   <div class="container">
