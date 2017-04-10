@@ -2,12 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { requireAuth, isAdmin, isLoging } from '../services/RoutesServices'
 import Login from '@/components/Login'
-import Home from '@/components/Home'
 import Admin from '@/components/admin/Admin'
 import Dashboard from '@/components/admin/Dashboard'
 import Clients from '@/components/admin/Clients'
 import ListClients from '@/components/admin/clients/ListClients'
 import NewClient from '@/components/admin/clients/NewClient'
+import Users from '@/components/admin/Users'
+import ListUsers from '@/components/admin/users/ListUsers'
 
 Vue.use(Router)
 
@@ -59,18 +60,16 @@ export default new Router({
           ]
         },
         {
-          // UserPosts will be rendered inside User's <router-view>
-          // when /user/:id/posts is matched
-          path: 'posts',
-          component: Home
+          path: 'users',
+          component: Users,
+          childer: [
+            {
+              path: '',
+              component: ListUsers
+            }
+          ]
         }
       ]
-    },
-    {
-      path: '/admin/administrator',
-      name: 'Home',
-      component: Home,
-      beforeEnter: requireAuth
     }
   ]
 })

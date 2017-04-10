@@ -35,10 +35,10 @@
               </router-link>
             </li>
             <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/users')}">
-              <a href='/admin/usuarios'>
+              <router-link to="/admin/users">
                 <i class='menu-icon fa fa-users'></i>
                 <span class='menu-text'>Usuarios</span>
-              </a>
+              </router-link>
             </li>
             <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/clients')}">
               <router-link to="/admin/clients">
