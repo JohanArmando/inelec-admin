@@ -10,8 +10,9 @@
       </div>
       <div class='media-body'>
         <h5 class='media-heading'>
-          <a class='title-color' href='#'>Ibraham Said</a>
+          <a class='title-color' href='#'>{{ client.name }} {{ client.last_name }}</a>
         </h5>
+        <p>Correo: {{ client.email }}</p>
         <p>
           <a class='text-color' href='#'>Ver</a>
           <a class='text-color' href='#'>Editar</a>
@@ -24,6 +25,7 @@
 
 <script>
 export default {
+  props: ['client']
 }
 </script>
 

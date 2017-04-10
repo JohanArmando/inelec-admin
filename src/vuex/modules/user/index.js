@@ -11,8 +11,8 @@ import {
 const initialState = {
   stateLogin: false,
   user: {
-    name: 'David Figueroa',
-    email: 'davidfigueroar9@gmail.com'
+    name: '',
+    email: ''
   }
 }
 

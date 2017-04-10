@@ -1,7 +1,7 @@
 <template lang="html">
   <ul class='nav nav-tabs' role='tablist' style='background: #F5F7F9 !important;'>
-    <li v-bind:class="{'active': subIsActive('/admin/clients/list-clients')}" role='presentation'>
-      <router-link to="/admin/clients/list-clients">Clientes</router-link>
+    <li v-bind:class="{'active': this.$route.path == '/admin/clients' }" role='presentation'>
+      <router-link to="/admin/clients">Clientes</router-link>
     </li>
     <li v-bind:class="{'active': subIsActive('/admin/clients/new-client')}" role='presentation'>
       <router-link to="/admin/clients/new-client">Agregar Cliente</router-link>

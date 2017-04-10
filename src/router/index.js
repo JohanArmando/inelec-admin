@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { requireAuth, isAdmin, isLoging } from '../services/RoutesServices'
-import Login from '@/components/Login'
-import Home from '@/components/Home'
+import { requireAuth, isLoging } from '../services/RoutesServices'
+
+import Login from '@/components/auth/Login'
+import Recovery from '@/components/auth/Recovery'
 import Admin from '@/components/admin/Admin'
 import Dashboard from '@/components/admin/Dashboard'
 import Clients from '@/components/admin/Clients'
@@ -14,9 +15,15 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/login',
+      path: '/auth/login',
       name: 'Login',
       component: Login,
+      beforeEnter: isLoging
+    },
+    {
+      path: '/auth/recovery',
+      name: 'Recovery',
+      component: Recovery,
       beforeEnter: isLoging
     },
     {
@@ -28,13 +35,6 @@ export default new Router({
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
           path: '',
-          beforeEnter: isAdmin,
-          component: Dashboard
-        },
-        {
-          // UserProfile will be rendered inside User's <router-view>
-          // when /user/:id/profile is matched
-          path: 'dashboard',
           component: Dashboard
         },
         {
@@ -43,13 +43,6 @@ export default new Router({
           children: [
             {
               path: '',
-              component: ListClients,
-              beforeEnter: function (to, from, next) {
-                next('/admin/clients/list-clients')
-              }
-            },
-            {
-              path: 'list-clients',
               component: ListClients
             },
             {
@@ -57,20 +50,8 @@ export default new Router({
               component: NewClient
             }
           ]
-        },
-        {
-          // UserPosts will be rendered inside User's <router-view>
-          // when /user/:id/posts is matched
-          path: 'posts',
-          component: Home
         }
       ]
-    },
-    {
-      path: '/admin/administrator',
-      name: 'Home',
-      component: Home,
-      beforeEnter: requireAuth
     }
   ]
 })

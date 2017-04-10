@@ -18,8 +18,8 @@
             </form>
           </div>
           <div class='row m-b-lg'>
-            <div class='col-md-4 col-sm-6' v-for="n in 10">
-              <card-client></card-client>
+            <div class='col-md-4 col-sm-6' v-for="client in clients">
+              <card-client v-bind:client="client"></card-client>
             </div>
           </div>
           <div class='col-md-8'>
@@ -61,12 +61,30 @@
     </section>
   </div>
 </template>
-
 <script>
 import CardClient from '@/components/admin/clients/CardClient'
+import { mapActions, mapGetters } from 'vuex'
 export default {
+  computed: {
+    ...mapGetters({
+      clients: 'getClients'
+    })
+  },
+  beforeMount () {
+    this.getClients().then(clients => {
+
+    })
+    .catch(message => {
+
+    })
+  },
   components: {
     CardClient
+  },
+  methods: {
+    ...mapActions([
+      'getClients'
+    ])
   }
 }
 </script>

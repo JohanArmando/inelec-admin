@@ -1,5 +1,5 @@
 <template>
-  <div class="animated fadeIn menubar-left menubar-unfold theme-default  theme-primary menubar-light pace-done">
+  <div class="animated fadeIn menubar-left theme-default menubar-unfold theme-primary menubar-light pace-done" v-bind:class="[sidebar ? 'menubar-in' : '']">
     <nav-bar></nav-bar>
     <side-bar></side-bar>
     <div class='app-main in' id='app-main'>
@@ -25,11 +25,17 @@
 import NavBar from '@/components/admin/partials/NavBar'
 import SideBar from '@/components/admin/partials/SideBar'
 import FooterApp from '@/components/admin/partials/FooterApp'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     NavBar,
     SideBar,
     FooterApp
+  },
+  computed: {
+    ...mapGetters({
+      sidebar: 'sidebarStatus'
+    })
   }
 }
 </script>

@@ -1,7 +1,7 @@
 export function requireAuth (to, from, next) {
   if (!localStorage.token) {
     next({
-      path: '/login',
+      name: 'Login',
       query: { redirect: to.fullPath }
     })
   } else {
@@ -11,12 +11,12 @@ export function requireAuth (to, from, next) {
 
 export function isLoging (to, from, next) {
   if (localStorage.token) {
-    next('/admin/dashboard')
+    next('/admin')
   } else {
     next()
   }
 }
 
 export function isAdmin (to, from, next) {
-  next('/admin/dashboard')
+  next('/admin')
 }

@@ -11,7 +11,6 @@ export function login ({ commit }, user) {
   return new Promise((resolve, reject) => {
     axios.post('/auth/login', { email: user.email, password: user.password })
     .then(response => {
-      console.log(response.data)
       commit(LOGIN, response.data.auth.user)
       localStorage.token = response.data.auth.token
       resolve(response.data.auth.user)
@@ -27,7 +26,6 @@ export function session ({ commit }) {
   return new Promise((resolve, reject) => {
     axios.get('/auth/user')
     .then(response => {
-      console.log(response.data)
       commit(SESSION, response.data.user)
       resolve(response.data.user)
     })

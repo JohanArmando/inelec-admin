@@ -26,11 +26,11 @@ export default {
       })
       .catch(message => {
         this.loading = false
-        this.$router.replace(this.$route.query.redirect || '/login')
+        this.$router.replace(this.$route.query.redirect || '/auth/login')
       })
     } else {
       this.loading = false
-      this.$router.replace('/login')
+      this.$router.replace('/auth/login')
     }
   },
   methods: {

@@ -28,7 +28,7 @@
       <div class='menubar-scroll'>
         <div class='menubar-scroll-inner'>
           <ul class='app-menu'>
-            <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/dashboard')}">
+            <li class='has-submenu' v-bind:class="{'open': this.$route.path == '/admin' }">
               <router-link to="/admin">
                 <i class='menu-icon fa fa-home'></i>
                 <span class='menu-text'>Inicio</span>

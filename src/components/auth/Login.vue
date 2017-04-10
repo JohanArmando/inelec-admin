@@ -8,7 +8,7 @@
     <div class='simple-page-wrap'>
       <div class='simple-page-logo'>
         <a href='/'>
-          <img class="img-responsive" style="width: 50%; margin-left: 25%;" src="../assets/logo/logo.png" alt="Logo" />
+          <img class="img-responsive" style="width: 50%; margin-left: 25%;" src="../../assets/logo/logo.png" alt="Logo" />
         </a>
       </div>
       <transition
@@ -47,7 +47,7 @@
 
       <div class='simple-page-footer'>
         <p>
-          <a href='/auth/recovery'>Recupera tu cuenta ?</a>
+          <router-link :to="{ name: 'Recovery' }">Recupera tu cuenta ?</router-link>
         </p>
         <p></p>
       </div>

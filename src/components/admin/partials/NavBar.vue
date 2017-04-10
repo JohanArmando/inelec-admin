@@ -1,7 +1,7 @@
 <template lang="html">
   <nav class="navbar navbar-inverse navbar-fixed-top primary in" id="app-navbar">
       <div class="navbar-header">
-        <button class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger" id="menubar-toggle-btn" type="button">
+        <button class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger" v-bind:class="{ 'is-active': sidebar }" v-on:click="toggleSideBar()" id="menubar-toggle-btn" type="button">
           <span class="sr-only">Toggle navigation</span>
           <span class="hamburger-box">
             <span class="hamburger-inner"></span>
@@ -91,17 +91,19 @@ export default {
   computed: {
     ...mapGetters({
       status: 'getStatus',
-      user: 'getUser'
+      user: 'getUser',
+      sidebar: 'sidebarStatus'
     })
   },
   methods: {
     doLogout () {
       this.logout().then(log => {
-        this.$router.replace('/login')
+        this.$router.replace('/auth/login')
       })
     },
     ...mapActions([
-      'logout'
+      'logout',
+      'toggleSideBar'
     ])
   }
 }
