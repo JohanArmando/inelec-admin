@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="promo">
-    <div class="promo-footer">
+    <div class="">
       <div class="row no-gutter">
         <div class="col-md-12">
           <div class="widget">
