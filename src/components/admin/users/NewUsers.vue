@@ -62,7 +62,7 @@
         <hr class="widget-separator">
         <div class="widget-body">
             <form>
-                <div class="m-b-lg"><small>lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem</small></div>
+                <div class="m-b-lg"><small></small></div>
                 <div class="form-group col-sm-6">
                   <label for="exampleSelectID">Tipo de Documento</label>
                   <select class="form-control" name="">
