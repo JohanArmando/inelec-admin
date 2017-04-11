@@ -4,7 +4,7 @@
       <div class='media-left'>
         <div class='avatar avatar-lg avatar-circle'>
           <a href='#'>
-            <i class='fa fa-user-circle fa-3x'></i>
+            <img v-bind:src="client.avatar_url" class="img-responsive" alt="">
           </a>
         </div>
       </div>

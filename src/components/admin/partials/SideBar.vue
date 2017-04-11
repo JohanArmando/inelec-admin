@@ -5,7 +5,7 @@
           <div class='media-left'>
             <div class='avatar avatar-md avatar-circle'>
               <a href=''>
-                <img class="img-responsive" src="../../../assets/logo/user.png" alt="User" />
+                <img class="img-responsive" :src="user.avatar" alt="User" />
               </a>
             </div>
           </div>

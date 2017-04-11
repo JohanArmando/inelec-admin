@@ -63,11 +63,9 @@
 </template>
 <script>
 import PaginationList from '@/components/admin/partials/PaginationList'
-import ModalDeleteConfirmation from '@/components/admin/partials/ModalDeleteConfirmation'
 export default {
   components: {
-    PaginationList,
-    ModalDeleteConfirmation
+    PaginationList
   }
 }
 </script>
