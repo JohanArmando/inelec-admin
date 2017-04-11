@@ -34,7 +34,8 @@
                             <div class="big-icon m-b-md watermark">
                               <i class="fa fa-5x dribbble fa-user-circle"></i>
                             </div>
-                            <h4 class="m-b-md">Usuario.nombre</h4>
+                            <!-- <h4 class="m-b-md">Usuario.nombre</h4> -->
+                            <a href="#">nombre del usuario</a>
                             <p class="text-muted m-b-lg">
                               Identificacion:
                               Permisos:
