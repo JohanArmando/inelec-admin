@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import user from './modules/user'
+import auth from './modules/auth'
 import clients from './modules/clients'
 import app from './modules/app'
 
@@ -10,7 +10,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
-    user,
+    auth,
     clients,
     app
   },

@@ -20,7 +20,7 @@
         <button type="button" class="close" v-on:click="error=false">
           <span aria-hidden="true">&times;</span>
         </button>
-        Email o password invalidos
+        {{ message }}
       </div>
       </transition>
 
@@ -66,7 +66,8 @@ export default {
         password: ''
       },
       loading: false,
-      error: false
+      error: false,
+      message: ''
     }
   },
   methods: {
@@ -77,7 +78,13 @@ export default {
         this.loading = false
         this.$router.replace(this.$route.query.redirect || '/admin')
       })
-      .catch(message => {
+      .catch(error => {
+        console.log(error.response)
+        if (error.response === undefined || error.response === null) {
+          this.message = 'Error en la plataforma, por favor intente mas tarde'
+        } else {
+          this.message = error.response.data.message
+        }
         this.loading = false
         this.error = true
       })

@@ -69,7 +69,6 @@ export default new Router({
             {
               path: 'list-users',
               component: ListUsers
-
             },
             {
               path: 'new-users',
