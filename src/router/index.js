@@ -7,6 +7,7 @@ import Admin from '@/components/admin/Admin'
 import Dashboard from '@/components/admin/Dashboard'
 import Clients from '@/components/admin/Clients'
 import ListClients from '@/components/admin/clients/ListClients'
+import ShowClient from '@/components/admin/clients/ShowClient'
 import NewClient from '@/components/admin/clients/NewClient'
 import Users from '@/components/admin/Users'
 import ListUsers from '@/components/admin/users/ListUsers'
@@ -39,6 +40,7 @@ export default new Router({
           // UserProfile will be rendered inside User's <router-view>
           // when /user/:id/profile is matched
           path: '',
+          name: 'Admin',
           component: Dashboard
         },
         {
@@ -47,11 +49,34 @@ export default new Router({
           children: [
             {
               path: '',
+              name: 'Admin-clients',
               component: ListClients
             },
             {
               path: 'new-client',
+              name: 'Admin-new-client',
               component: NewClient
+            },
+            { path: ':id',
+              component: ShowClient,
+              children: [
+                {
+                  // UserProfile will be rendered inside User's <router-view>
+                  // when /user/:id/profile is matched
+                  path: '',
+                  component: {
+                    template: '<div>Profile, client id: {{ $route.params.id }}</div>'
+                  }
+                },
+                {
+                  // UserPosts will be rendered inside User's <router-view>
+                  // when /user/:id/posts is matched
+                  path: 'companies',
+                  component: {
+                    template: '<div>Companies, client id: {{ $route.params.id }}</div>'
+                  }
+                }
+              ]
             }
           ]
         },
@@ -61,13 +86,6 @@ export default new Router({
           children: [
             {
               path: '',
-              component: ListUsers,
-              beforeEnter: function (to, from, next) {
-                next('/admin/users/list-users')
-              }
-            },
-            {
-              path: 'list-users',
               component: ListUsers
             },
             {

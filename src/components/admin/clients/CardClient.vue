@@ -14,8 +14,7 @@
         </h5>
         <p>Correo: {{ client.email }}</p>
         <p>
-          <a class='text-color' href='#'>Ver</a>
-          <a class='text-color' href='#'>Editar</a>
+          <router-link :to="'/admin/clients/'+client.id">Ver cliente</router-link>
           <a class='text-danger' href='#'>Eliminar</a>
         </p>
       </div>

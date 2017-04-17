@@ -55,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-10" style="margin-left: 8px; width: 73%;">
+        <div class="col-md-9">
     <div class="widget">
         <header class="widget-header">
             <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>

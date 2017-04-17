@@ -13,6 +13,7 @@ export function login ({ commit }, user) {
     .then(response => {
       commit(LOGIN, response.data.auth.user)
       localStorage.token = response.data.auth.token
+      axios.defaults.headers.bearer = response.data.auth.token
       resolve(response.data.auth.user)
     })
     .catch(error => {
