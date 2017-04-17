@@ -7,7 +7,7 @@
       <router-link to="/admin/users/new-users">Agregar Usuario</router-link>
     </li>
     <li v-bind:class="{'active': subIsActive('/admin/users/rol-users')}" role="presentation">
-      <router-link to="/admin/users/rol-users">Rol</router-link>
+      <router-link to="/admin/users/rol-users">Roles</router-link>
     </li>
     <li v-bind:class="{'active': subIsActive('/admin/users/permissions-users')}" role="presentation">
       <router-link to="/admin/users/permissions-users">Permisos</router-link>

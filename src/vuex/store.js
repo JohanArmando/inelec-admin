@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 import clients from './modules/clients'
 import app from './modules/app'
+import users from './modules/users'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
   modules: {
     auth,
     clients,
-    app
+    app,
+    users
   },
   strict: debug
 })

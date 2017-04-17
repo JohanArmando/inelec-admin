@@ -12,6 +12,7 @@ import NewClient from '@/components/admin/clients/NewClient'
 import Users from '@/components/admin/Users'
 import ListUsers from '@/components/admin/users/ListUsers'
 import NewUser from '@/components/admin/users/NewUsers'
+import ShowUser from '@/components/admin/users/ShowUsers'
 import RolUsers from '@/components/admin/users/RolUsers'
 import PermissionsUsers from '@/components/admin/users/PermissionsUsers'
 
@@ -99,6 +100,27 @@ export default new Router({
             {
               path: 'permissions-users',
               component: PermissionsUsers
+            },
+            { path: ':id',
+              component: ShowUser,
+              children: [
+                {
+                  // UserProfile will be rendered inside User's <router-view>
+                  // when /user/:id/profile is matched
+                  path: '',
+                  component: {
+                    template: '<div>Profile, client id: {{ $route.params.id }}</div>'
+                  }
+                },
+                {
+                  // UserPosts will be rendered inside User's <router-view>
+                  // when /user/:id/posts is matched
+                  path: 'companies',
+                  component: {
+                    template: '<div>Companies, client id: {{ $route.params.id }}</div>'
+                  }
+                }
+              ]
             }
           ]
         }

@@ -5,16 +5,16 @@
         <div class="col-md-2">
           <div class="widget">
             <div class="widget-header">
-              <h4 class="widget-title">Nombre del Usuario</h4>
+              <h4 class="widget-title">David Figueroa</h4>
             </div>
             <hr class="widget-separator">
             <div class="widget-body clearfix text-center">
-                <div v-if="!user.avatar">
-                  <img src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
-                </div>
-                <div v-else>
-                  <img :src="user.avatar" class="img-circle img-responsive center-block user-image" />
-                </div>
+              <div v-if="!user.avatar">
+                <img src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
+              </div>
+              <div v-else>
+                <img :src="user.avatar" class="img-circle img-responsive center-block user-image" />
+              </div>
               <div class="widget-footer">
                 <span v-if="!user.avatar" href="#">
                   <input type="file" class="hidden" id="file" @change="onFileChange">
@@ -23,46 +23,14 @@
                   </label>
                 </span>
                 <button v-else @click="removeImage" class="btn btn-primary text-center">Remover imagen</button>
-
               </div>
             </div>
           </div>
           <div class="widget">
-            <div class="widget-header">
-              <h4 class="widget-title">
-                <i class="fa fa-unlock"></i>
-                 Rol y Permisos
-              </h4>
-            </div>
-            <hr class="widget-separator">
-            <div class="widget-body clearfix">
-              <p class="text-center text-danger">
-                Debe asignar un rol y permiso adecuado el usuario
-              </p>
-              <form role="form" class="" action="#" method="post">
-                <div class="form-group">
-                  <select class="form-control" name="">
-                    <option value="0" selected>Selecciona el Rol</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Vendedor</option>
-                    <option value="3">Tecnico</option>
-                    <option value="4">Cliente</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <select class="form-control" name="">
-                    <option value="0" selected>Selecciones Nivel</option>
-                    <option value="1">Total - Administrador</option>
-                    <option value="2">Cliente</option>
-                    <option value="3">Vendedor</option>
-                    <option value="4">Tecnico</option>
-                  </select>
-                </div>
-                <div class="form-group text-center">
-                  <button type="submit" name="button" class="btn btn-primary btn-xs"><i class="fa fa-lock"></i> Asignar Permisos</button>
-                </div>
-              </form>
-            </div>
+            <router-link class="list-group-item active-inelec-v" :to="'/admin/users/'+$route.params.id+''">Informacion General</router-link>
+            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/phones'" >Telefonos</router-link>
+            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/permissions'" >Permisos</router-link>
+            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/history'" >Historial</router-link>
           </div>
         </div>
         <div class="col-md-10">
@@ -123,7 +91,10 @@
     </div>
 </div>
       </div>
-    </div>
+    </div>.list-group-item:first-child {
+    /* border-top-right-radius: 4px; */
+    /* border-top-left-radius: 4px; */
+}
   </div>
 </template>
 
@@ -176,5 +147,12 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  .list-group-item:first-child, .list-group-item:last-child{
+    border-radius: 0px;
+  }
+  .active-inelec-v {
+    border-left: 3px solid #188AE2;
+    padding-left: 13px;
+  }
 </style>
