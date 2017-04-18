@@ -14,6 +14,7 @@ import ListUsers from '@/components/admin/users/ListUsers'
 import NewUser from '@/components/admin/users/NewUsers'
 import ShowUser from '@/components/admin/users/ShowUsers'
 import RolUsers from '@/components/admin/users/RolUsers'
+import InformationGeneral from '@/components/admin/users/InformationGeneral'
 import Budgets from '@/components/admin/Budgets'
 import Listbudget from '@/components/admin/budgets/Listbudget'
 import Newbudget from '@/components/admin/budgets/Newbudget'
@@ -68,13 +69,13 @@ export default new Router({
                   // when /user/:id/profile is matched
                   path: '',
                   component: {
-                    template: '<div>Profile, client id: {{ $route.params.id }}</div>'
+                    template: '<div>Companies, user id: {{ $route.params.id }}</div>'
                   }
                 },
                 {
                   // UserPosts will be rendered inside User's <router-view>
                   // when /user/:id/posts is matched
-                  path: 'companies',
+                  path: 'phones',
                   component: {
                     template: '<div>Companies, client id: {{ $route.params.id }}</div>'
                   }
@@ -106,16 +107,30 @@ export default new Router({
                   // UserProfile will be rendered inside User's <router-view>
                   // when /user/:id/profile is matched
                   path: '',
+                  component: InformationGeneral
+                },
+                {
+                  // UserPosts will be rendered inside User's <router-view>
+                  // when /user/:id/posts is matched
+                  path: 'phones',
                   component: {
-                    template: '<div>Profile, client id: {{ $route.params.id }}</div>'
+                    template: '<div>Companies, user id: {{ $route.params.id }}</div>'
                   }
                 },
                 {
                   // UserPosts will be rendered inside User's <router-view>
                   // when /user/:id/posts is matched
-                  path: 'companies',
+                  path: 'permissions',
                   component: {
-                    template: '<div>Companies, client id: {{ $route.params.id }}</div>'
+                    template: '<div>Companies, user id: {{ $route.params.id }}</div>'
+                  }
+                },
+                {
+                  // UserPosts will be rendered inside User's <router-view>
+                  // when /user/:id/posts is matched
+                  path: 'history',
+                  component: {
+                    template: '<div>Companies, user id: {{ $route.params.id }}</div>'
                   }
                 }
               ]

@@ -38,7 +38,7 @@ export default {
 
 <style lang="css">
   .user-image{
-    width: 100px;
-    height: 100px;
+    padding-left: 30%;
+    padding-right: 30%;
   }
 </style>

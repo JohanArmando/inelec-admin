@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 // ===== Bootstrap components integration (JQuery needed) ======
 window.$ = window.jQuery = require('jquery')
 require('bootstrap-sass')
+window.$toast = require('toastr')
 
 /* eslint-disable no-new */
 new Vue({
