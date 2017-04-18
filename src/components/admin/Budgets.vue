@@ -1,5 +1,9 @@
 <template lang="html">
-  <p>lorem lorem </p>
+    <div class="wrap">
+      <div class="app-content">
+        
+      </div>
+    </div>
 </template>
 
 <script>

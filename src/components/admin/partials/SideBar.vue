@@ -71,9 +71,10 @@
               </a>
             </li>
             <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/contacts')}">
-              <a class='submenu-toggle' href='javascript:void(0)'>
-                <i class='menu-icon fa fa-user-circle'></i>
-                <span class='menu-text'>Contactos</span>
+              <router-link to="/admin/contacts">
+                <i class="menu-icon fa fa-user-circle"></i>
+                <span class="menu-text">Contactos</span>
+              </router-link>
               </a>
             </li>
             <li class='menu-separator'>
