@@ -15,7 +15,7 @@
                         </div>
                       </form>
                     </div>
-                    <div class="col-lg-2 col-md-4">
+                    <div class="col-lg-3 col-md-3">
                         <a href="#" class="dropdown-toggle btn btn-default" id="drop6" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                           Ordenar <span class="caret"></span>
                         </a>
@@ -31,7 +31,7 @@
                 </div>
                 <div class= "container-fluid">
                   <div class="row">
-                    <div class="col-md-4 col-lg-2 col-sm-6" v-for="user in users">
+                    <div class="col-md-4 col-lg-3 col-sm-6" v-for="user in users">
                       <card-user v-bind:user="user"></card-user>
                     </div>
 
