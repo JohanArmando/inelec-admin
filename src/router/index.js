@@ -18,6 +18,8 @@ import InformationGeneral from '@/components/admin/users/InformationGeneral'
 import Budgets from '@/components/admin/Budgets'
 import Listbudget from '@/components/admin/budgets/Listbudget'
 import Newbudget from '@/components/admin/budgets/Newbudget'
+import Contacts from '@/components/admin/Contacts'
+import ListContacts from '@/components/admin/contacts/ListContacts'
 
 Vue.use(Router)
 
@@ -149,6 +151,16 @@ export default new Router({
             {
               path: 'new-budget',
               component: Newbudget
+            }
+          ]
+        },
+        {
+          path: 'contacts',
+          component: Contacts,
+          children: [
+            {
+              path: '',
+              component: ListContacts
             }
           ]
         }
