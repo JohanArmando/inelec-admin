@@ -4,7 +4,6 @@
           <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>
       <hr class="widget-separator">
       <div class="widget-body">
-          <div class="alert alert-success alert-custom alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4 class="alert-title">custom alert success</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam</p></div>
           <form v-on:submit.prevent="updateUserSubmit">
               <div class="m-b-lg"><small></small></div>
               <div class="form-group col-sm-6">
@@ -77,10 +76,12 @@ export default {
       .then(user => {
         console.log(user)
         window.$('#btn-update-user').button('reset')
+        window.$toast.success('Se han guardado correctamente los cambios')
       })
       .catch(error => {
         console.log(error.response)
         window.$('#btn-update-user').button('reset')
+        window.$toast.error('Ha ocurrido un incoveniente')
       })
     },
     updateValue (attribute, e) {
