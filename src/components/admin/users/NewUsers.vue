@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 col-md-4">
+        <div class="col-lg-3 col-md-4">
           <div class="widget">
             <div class="widget-header">
               <h4 class="widget-title">Nombre del Usuario</h4>
@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-10 col-md-8">
+        <div class="col-lg-9 col-md-8">
     <div class="widget">
         <header class="widget-header">
             <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>
