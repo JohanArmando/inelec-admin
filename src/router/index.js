@@ -14,7 +14,6 @@ import ListUsers from '@/components/admin/users/ListUsers'
 import NewUser from '@/components/admin/users/NewUsers'
 import ShowUser from '@/components/admin/users/ShowUsers'
 import RolUsers from '@/components/admin/users/RolUsers'
-import PermissionsUsers from '@/components/admin/users/PermissionsUsers'
 
 Vue.use(Router)
 
@@ -96,10 +95,6 @@ export default new Router({
             {
               path: 'rol-users',
               component: RolUsers
-            },
-            {
-              path: 'permissions-users',
-              component: PermissionsUsers
             },
             { path: ':id',
               component: ShowUser,
