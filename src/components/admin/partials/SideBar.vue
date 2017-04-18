@@ -47,10 +47,10 @@
               </router-link>
             </li>
             <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/budgets')}">
-              <a class='submenu-toggle' href='javascript:void(0)'>
-                <i class='menu-icon fa fa-file-o'></i>
-                <span class='menu-text'>Presupuesto</span>
-              </a>
+              <router-link to="/admin/budgets">
+                <i class="menu-icon fa fa-file-text"></i>
+                <span class="menu-text">Presupuesto</span>
+              </router-link>
             </li>
             <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/emails')}">
               <a href=''>

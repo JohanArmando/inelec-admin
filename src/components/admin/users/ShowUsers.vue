@@ -38,6 +38,7 @@
           </div>
         </div>
         <div class="col-lg-9 col-md-8">
+
           <transition
           name="custom-classes-transition"
           enter-active-class="animated fadeIn"
@@ -45,6 +46,7 @@
           :duration="{ enter: 1500, leave: 0 }">>
             <router-view></router-view>
           </transition>
+
 
         </div>
       </div>
