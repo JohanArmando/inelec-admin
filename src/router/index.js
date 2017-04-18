@@ -14,6 +14,9 @@ import ListUsers from '@/components/admin/users/ListUsers'
 import NewUser from '@/components/admin/users/NewUsers'
 import ShowUser from '@/components/admin/users/ShowUsers'
 import RolUsers from '@/components/admin/users/RolUsers'
+import Budgets from '@/components/admin/Budgets'
+import Listbudget from '@/components/admin/budgets/Listbudget'
+import Newbudget from '@/components/admin/budgets/Newbudget'
 
 Vue.use(Router)
 
@@ -116,6 +119,21 @@ export default new Router({
                   }
                 }
               ]
+            }
+          ]
+        },
+        {
+          path: 'budgets',
+          component: Budgets,
+          children: [
+            {
+              path: '',
+              component: Listbudget
+
+            },
+            {
+              path: 'new-budget',
+              component: Newbudget
             }
           ]
         }
