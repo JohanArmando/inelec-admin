@@ -15,7 +15,7 @@
                         </div>
                       </form>
                     </div>
-                    <div class="col-lg-2 col-md-3">
+                    <div class="col-lg-2 col-md-4">
                         <a href="#" class="dropdown-toggle btn btn-default" id="drop6" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
                           Ordenar <span class="caret"></span>
                         </a>

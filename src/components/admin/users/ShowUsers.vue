@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 col-md-3">
+        <div class="col-lg-2 col-md-4">
           <div class="widget">
             <div class="widget-header">
               <h4 class="widget-title">David Figueroa</h4>
@@ -33,7 +33,7 @@
             <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/history'" >Historial</router-link>
           </div>
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10 col-md-8">
     <div class="widget">
         <header class="widget-header">
             <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>
