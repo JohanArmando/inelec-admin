@@ -175,6 +175,7 @@ export default {
       .then(user => {
         window.$('#btn-register').button('reset')
         console.log(user)
+        window.$toast.success('Se han añadido el usuario correctamente')
         this.$router.replace('/admin/users/' + user.id)
       })
       .catch(error => {

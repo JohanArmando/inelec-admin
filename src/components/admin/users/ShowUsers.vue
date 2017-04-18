@@ -26,7 +26,7 @@
               <p class="text-muted m-b-lg">
                 Identificacion: {{ user.identity }}<br>
                 Email: {{ user.email }}<br>
-                Rol: {{ user.roles[0].name }}
+                Rol:<span v-if="user.roles"> {{ user.roles[0].name }}</span>
               </p>
             </div>
           </div>
