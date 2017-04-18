@@ -1,0 +1,5 @@
+export const GETALL = 'clients/GETALL'
+export const GET = 'clients/GET'
+export const STORE = 'clients/STORE'
+export const DELETE = 'clients/DELETE'
+export const UPDATE = 'clients/DELETE'

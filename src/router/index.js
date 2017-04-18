@@ -15,6 +15,7 @@ import NewUser from '@/components/admin/users/NewUsers'
 import ShowUser from '@/components/admin/users/ShowUsers'
 import RolUsers from '@/components/admin/users/RolUsers'
 import InformationGeneral from '@/components/admin/users/InformationGeneral'
+import PhonesUser from '@/components/admin/users/PhonesUser'
 import Budgets from '@/components/admin/Budgets'
 import Listbudget from '@/components/admin/budgets/Listbudget'
 import Newbudget from '@/components/admin/budgets/Newbudget'
@@ -113,9 +114,7 @@ export default new Router({
                   // UserPosts will be rendered inside User's <router-view>
                   // when /user/:id/posts is matched
                   path: 'phones',
-                  component: {
-                    template: '<div>Companies, user id: {{ $route.params.id }}</div>'
-                  }
+                  component: PhonesUser
                 },
                 {
                   // UserPosts will be rendered inside User's <router-view>

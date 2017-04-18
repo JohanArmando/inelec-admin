@@ -4,6 +4,7 @@ import auth from './modules/auth'
 import clients from './modules/clients'
 import app from './modules/app'
 import users from './modules/users'
+import phones from './modules/phones'
 
 Vue.use(Vuex)
 
@@ -14,7 +15,8 @@ export default new Vuex.Store({
     auth,
     clients,
     app,
-    users
+    users,
+    phones
   },
   strict: debug
 })
