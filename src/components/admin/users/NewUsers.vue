@@ -71,11 +71,11 @@
             <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>
         <hr class="widget-separator">
         <div class="widget-body">
-            <form>
+            <form v-on:submit.prevent="saveUser">
                 <div class="m-b-lg"><small></small></div>
                 <div class="form-group col-sm-6">
                   <label for="exampleSelectID">Tipo de Documento</label>
-                  <select class="form-control" name="">
+                  <select v-model="user.type_identity" class="form-control" name="" required="">
                     <option value="1">C.C</option>
                     <option value="2">T.I</option>
                     <option value="3">T.E</option>
@@ -83,34 +83,34 @@
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="exampleNumberID">Numero de indentificacion</label>
-                  <input type="text" name="" value="" class="form-control">
+                  <input v-model="user.identity" type="text" name="" value="" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input v-model="user.name" id="exampleInputEmail1" type="text" class="form-control">
+                    <input v-model="user.name" id="exampleInputEmail1" type="text" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="exampleInputPassword1">Apellido</label>
-                    <input v-model="user.last_name" id="exampleInputPassword1" type="text" class="form-control">
+                    <input v-model="user.last_name" id="exampleInputPassword1" type="text" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-12">
                     <label for="exampleInputFile">Email</label>
-                    <input v-model="user.email" id="exampleInputFile" type="email" class="form-control">
+                    <input v-model="user.email" id="exampleInputFile" type="email" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="">Contraseña</label>
-                    <input v-model="user.password" type="password" class="form-control">
+                    <input v-model="user.password" type="password" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="">Repetir Contraseñe</label>
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control" required="">
                 </div>
                 <div class="form-group col-sm-12">
                   <label for="">Informacion Adicional</label>
-                  <textarea class="form-control" name="name" rows="8" cols="80" placeholder="Agregar informacion Adicional al usuario"></textarea>
+                  <textarea v-model="user.description" class="form-control" name="name" rows="8" cols="80" placeholder="Agregar informacion Adicional al usuario"></textarea>
                 </div>
                 <div class="form-group col-sm-12">
-                  <button type="button" v-on:click="saveUser()" class="btn btn-success"><i class="fa fa-check"></i> Registro
+                  <button type="submit" id="btn-register" class="btn btn-success"><i class="fa fa-check"></i> Registro
                   </button>
                   <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar
                   </button>
@@ -134,7 +134,9 @@ export default {
   data () {
     return {
       user: {
-        identification: '',
+        identity: '',
+        type_identity: '',
+        description: '',
         name: '',
         last_name: '',
         email: '',
@@ -168,8 +170,16 @@ export default {
       'storeUser'
     ]),
     saveUser () {
-      this.storeUser(this.user).then(user => {
+      window.$('#btn-register').button('loading')
+      this.storeUser(this.user)
+      .then(user => {
+        window.$('#btn-register').button('reset')
         console.log(user)
+        this.$router.replace('/admin/users/' + user.id)
+      })
+      .catch(error => {
+        console.log(error)
+        window.$('#btn-register').button('reset')
       })
     }
   }

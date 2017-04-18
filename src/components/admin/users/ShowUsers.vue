@@ -2,115 +2,72 @@
   <div class="wrap">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-2 col-md-4">
+        <div class="col-lg-3 col-md-4">
           <div class="widget">
             <div class="widget-header">
-              <h4 class="widget-title">David Figueroa</h4>
+              <h4 class="widget-title">{{ user.name }} {{ user.last_name }}</h4>
             </div>
             <hr class="widget-separator">
             <div class="widget-body clearfix text-center">
-              <div v-if="!user.avatar">
-                <img src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
+              <div class="big-icon m-b-md watermark">
+                <img v-if="!user.avatar_url" src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
+                <img v-else :src="user.avatar_url" alt="" class="img-circle img-responsive center-block user-image">
               </div>
-              <div v-else>
-                <img :src="user.avatar" class="img-circle img-responsive center-block user-image" />
-              </div>
+
               <div class="widget-footer">
                 <span v-if="!user.avatar" href="#">
                   <input type="file" class="hidden" id="file" @change="onFileChange">
                   <label for="file" class="btn btn-primary">
-                      Agregar imagen
+                      Cambiar imagen
                   </label>
                 </span>
                 <button v-else @click="removeImage" class="btn btn-primary text-center">Remover imagen</button>
               </div>
+              <p class="text-muted m-b-lg">
+                Identificacion: {{ user.identity }}<br>
+                Email: {{ user.email }}<br>
+                Rol: {{ user.roles[0].name }}
+              </p>
             </div>
           </div>
           <div class="widget">
-            <router-link class="list-group-item active-inelec-v" :to="'/admin/users/'+$route.params.id+''">Informacion General</router-link>
-            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/phones'" >Telefonos</router-link>
-            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/permissions'" >Permisos</router-link>
-            <router-link class="list-group-item" :to="'/admin/users/'+$route.params.id+'/history'" >Historial</router-link>
+            <router-link class="list-group-item" v-bind:class="{'active-inelec-v': this.$route.path == '/admin/users/'+$route.params.id }" :to="'/admin/users/'+$route.params.id+''">Informacion General</router-link>
+            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/phones'" >Telefonos</router-link>
+            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/permissions'" >Permisos</router-link>
+            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/history'" >Historial</router-link>
           </div>
         </div>
-        <div class="col-lg-10 col-md-8">
-    <div class="widget">
-        <header class="widget-header">
-            <h4 class="widget-title">Informacion Adicional de Usuario</h4></header>
-        <hr class="widget-separator">
-        <div class="widget-body">
-            <form>
-                <div class="m-b-lg"><small></small></div>
-                <div class="form-group col-sm-6">
-                  <label for="exampleSelectID">Tipo de Documento</label>
-                  <select class="form-control" name="">
-                    <option value="1">C.C</option>
-                    <option value="2">T.I</option>
-                    <option value="3">T.E</option>
-                  </select>
-                </div>
-                <div class="form-group col-sm-6">
-                  <label for="exampleNumberID">Numero de indentificacion</label>
-                  <input type="text" name="" value="" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input v-model="user.name" id="exampleInputEmail1" type="text" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="exampleInputPassword1">Apellido</label>
-                    <input v-model="user.last_name" id="exampleInputPassword1" type="text" class="form-control">
-                </div>
-                <div class="form-group col-sm-12">
-                    <label for="exampleInputFile">Email</label>
-                    <input v-model="user.email" id="exampleInputFile" type="email" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="">Contraseña</label>
-                    <input v-model="user.password" type="password" class="form-control">
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="">Repetir Contraseñe</label>
-                    <input type="password" class="form-control">
-                </div>
-                <div class="form-group col-sm-12">
-                  <label for="">Informacion Adicional</label>
-                  <textarea class="form-control" name="name" rows="8" cols="80" placeholder="Agregar informacion Adicional al usuario"></textarea>
-                </div>
-                <div class="form-group col-sm-12">
-                  <button type="button" v-on:click="saveUser()" class="btn btn-success"><i class="fa fa-check"></i> Registro
-                  </button>
-                  <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar
-                  </button>
-                </div>
-                <div>
-                  .
-                </div>
-            </form>
+        <div class="col-lg-9 col-md-8">
+          <transition
+          name="custom-classes-transition"
+          enter-active-class="animated fadeIn"
+          leave-active-class="animated fadeOut"
+          :duration="{ enter: 1500, leave: 0 }">>
+            <router-view></router-view>
+          </transition>
+
         </div>
-    </div>
-</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      user: {
-        identification: '',
-        name: '',
-        last_name: '',
-        email: '',
-        password: '',
-        avatar: '',
-        role: ''
-      }
-    }
+  computed: {
+    ...mapGetters({
+      user: 'getCurrentUser'
+    })
+  },
+  beforeMount () {
+    this.getUser(this.$route.params.id).then(users => {
+
+    })
+    .catch(message => {
+
+    })
   },
   methods: {
     onFileChange (e) {
@@ -133,11 +90,18 @@ export default {
       this.user.avatar = ''
     },
     ...mapActions([
-      'storeUser'
+      'storeUser',
+      'getUser'
     ]),
     saveUser () {
       this.storeUser(this.user).then(user => {
         console.log(user)
+      })
+    },
+    subIsActive (input) {
+      const paths = Array.isArray(input) ? input : [input]
+      return paths.some(path => {
+        return this.$route.path.indexOf(path) === 0 // current path starts with this path string
       })
     }
   }

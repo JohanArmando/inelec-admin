@@ -1,3 +1,5 @@
 export const GETUSERS = 'clients/GETUSERS'
+export const GETUSER = 'clients/GETUSER'
 export const STOREUSER = 'clients/STOREUSER'
 export const DELETEUSER = 'clients/DELETEUSER'
+export const UPDATEUSER = 'clients/DELETEUSER'

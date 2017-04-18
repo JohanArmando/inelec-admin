@@ -3,18 +3,25 @@ import * as actions from './actions'
 
 import {
   GETUSERS,
+  GETUSER,
   STOREUSER,
-  DELETEUSER
+  DELETEUSER,
+  UPDATEUSER
 } from './mutation-types'
 
 const initialState = {
-  users: []
+  users: [],
+  current_user: ''
 }
 
 // mutations
 const mutations = {
+
   [GETUSERS] (state, users) {
     state.users = users
+  },
+  [GETUSER] (state, user) {
+    state.current_user = user
   },
   [STOREUSER] (state, user) {
     state.users.push(user)
@@ -23,6 +30,9 @@ const mutations = {
     state.users = state.users.filter(function (el) {
       return el.id !== user.id
     })
+  },
+  [UPDATEUSER] (state, user) {
+    state.current_user = user
   }
 }
 
