@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <nav class="search-results-navigation"></nav>
       <ul class="pagination m-0">
         <li>
