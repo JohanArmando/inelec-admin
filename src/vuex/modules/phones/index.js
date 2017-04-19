@@ -27,6 +27,7 @@ const mutations = {
     state.phones.push(phone)
   },
   [DELETE] (state, phone) {
+    console.log('delete')
     state.phones = state.phones.filter(function (el) {
       return el.id !== phone.id
     })

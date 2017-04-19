@@ -68,6 +68,7 @@ export function deletePhone ({ commit }, data) {
   return new Promise((resolve, reject) => {
     axios.delete('/admin/users/' + data.userId + '/phones/' + data.id)
     .then(response => {
+      console.log(response.data)
       commit(DELETE, response.data)
       resolve(response.data)
     })

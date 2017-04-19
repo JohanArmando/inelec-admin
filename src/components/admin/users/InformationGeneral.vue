@@ -8,7 +8,7 @@
               <div class="m-b-lg"><small></small></div>
               <div class="form-group col-sm-6">
                 <label for="exampleSelectID">Tipo de Documento</label>
-                <select :value="user.type_identity" v-on:input="updateValue('type_identity',$event)" class="form-control" name="">
+                <select :value="user.type_identity" v-on:input="updateValue('type_identity',$event)" class="form-control" name="" required="required">
                   <option value="1">C.C</option>
                   <option value="2">T.I</option>
                   <option value="3">T.E</option>
@@ -16,15 +16,15 @@
               </div>
               <div class="form-group col-sm-6">
                 <label for="exampleNumberID">Numero de indentificacion</label>
-                <input :value="user.identity" type="text" name="" v-on:input="updateValue('identity',$event)" class="form-control">
+                <input :value="user.identity" type="text" name="" v-on:input="updateValue('identity',$event)" class="form-control" required="required">
               </div>
               <div class="form-group col-sm-6">
                   <label for="exampleInputEmail1">Nombre</label>
-                  <input :value="user.name" id="exampleInputEmail1" v-on:input="updateValue('name',$event)" type="text" class="form-control">
+                  <input :value="user.name" id="exampleInputEmail1" v-on:input="updateValue('name',$event)" type="text" class="form-control" required="required">
               </div>
               <div class="form-group col-sm-6">
                   <label for="exampleInputPassword1">Apellido</label>
-                  <input :value="user.last_name" id="exampleInputPassword1" v-on:input="updateValue('last_name',$event)" type="text" class="form-control">
+                  <input :value="user.last_name" id="exampleInputPassword1" v-on:input="updateValue('last_name',$event)" type="text" class="form-control" required="required">
               </div>
               <div class="form-group col-sm-12">
                   <label for="eidentityxampleInputFile">Email</label>

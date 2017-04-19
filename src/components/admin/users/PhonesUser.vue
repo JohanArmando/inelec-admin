@@ -4,7 +4,7 @@
         <header class="widget-header">
             <h4 class="widget-title">Telefonos</h4></header>
         <hr class="widget-separator">
-        <div class="widget-body">
+
           <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -32,7 +32,7 @@
                           Editar
                           <i class="fa fa-edit"></i>
                         </button>
-                        <button v-on:click="destroyPhone(phone)" class="btn btn-danger btn-xs">
+                        <button v-on:click="actionPhoneDelete(phone)" class="btn btn-danger btn-xs">
                           Eliminar
                           <i class="fa fa-times-circle"></i>
                         </button>
@@ -40,19 +40,19 @@
                     </tr>
                     <tr v-if="!newPhone">
                       <td colspan="5" class="text-center">
-                        <button v-on:click="newPhone = true" class="btn btn-success btn-xs">añadir<i class="fa fa-plus"></i></button>
+                        <button v-on:click="newPhone = true" class="btn btn-success btn-xs"> añadir nuevo telefono <i class="fa fa-plus"></i></button>
                       </td>
                     </tr>
                     <tr v-else>
                       <td class="text-center">
-                        <select v-model="newPhoneSubmit.type_number" class="form-control">
+                        <select v-model="newPhoneSubmit.type_number" class="form-control  input-sm">
                           <option>Casa</option>
                           <option>Trabajo</option>
                           <option>Celular</option>
                         </select>
                       </td>
                       <td class="text-center">
-                        <select v-model="newPhoneSubmit.country_code" name="countryCode" class="form-control" id="">
+                        <select v-model="newPhoneSubmit.country_code" name="countryCode" class="form-control input-sm" id="">
                           <option data-countryCode="CO" value="57">Colombia (+57)</option>
                         	<optgroup label="Other countries">
                         		<option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -273,101 +273,53 @@
                         </select>
                       </td>
                       <td class="text-center">
-                        <input v-model="newPhoneSubmit.number" type="number" class="form-control" name="" value="">
+                        <input v-model="newPhoneSubmit.number" type="number" class="form-control input-sm" name="" value="">
                       </td>
                       <td class="text-center">
-                        <select v-model="newPhoneSubmit.primary" class="form-control" name="">
-                          <option value="true">Primario</option>
-                          <option value="false">Nsuccesso primario</option>
+                        <select v-model="newPhoneSubmit.primary" class="form-control input-sm" name="">
+                          <option value="true">Principal</option>
+                          <option value="false">Secundario</option>
                         </select>
                       </td>
                       <td class="text-center">
-                        <button class="btn btn-default" v-on:click="phoneSubmit" id="btn-store-phone">
+                        <button class="btn btn-default btn-xs" v-on:click="phoneSubmit" id="btn-store-phone">
                           Guardar
                           <i class="fa fa-edit"></i>
                         </button>
-                        <button v-on:click="newPhone = false" class="btn btn-danger">
+                        <button v-on:click="newPhone = false" class="btn btn-danger btn-xs">
                           Cancelar
                           <i class="fa fa-times-circle"></i>
                         </button>
+
                       </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+
+
+        <div class="widget-body"></div>
         </div>
     </div>
-    <div class="widget">
-        <header class="widget-header">
-            <h4 class="widget-title">Direcciones</h4></header>
-        <hr class="widget-separator">
-        <div class="widget-body">
-          <div class="table-responsive">
-            <table class="table no-cellborder">
-                <thead>
-                    <tr>userId
-                        <th>Tipo</th>
-                        <th>Pais</th>
-                        <th>Numero</th>
-                        <th>Primario</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-primary">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>150</td>
-                    </tr>
-                    <tr>
-                        <td class="text-primary">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>202</td>
-                    </tr>
-                    <tr>
-                        <td class="text-success">Landlord</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>313</td>
-                    </tr>
-                    <tr>
-                        <td class="text-primary">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>175</td>
-                    </tr>
-                    <tr>
-                        <td class="text-danger">Seller</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>148</td>
-                    </tr>
-                    <tr>
-                        <td class="text-primary">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>phones
-                        <td>1500</td>
-                    </tr>
-                    <tr>
-                        <td class="text-primary">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>1270</td>
-                    </tr>
-                    <tr>
-                        <td class="text-danger">Buyer</td>
-                        <td>Denise Ann</td>
-                        <td>150</td>
-                        <td>3201</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Modal -->
+    <div class="modal fade" id="delete-phone-modal" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Desea eliminar el telefono {{ aux_phone.number }}</h4>
+          </div>
+          <div class="modal-body">
+            <p>Al eliminar el telefono no podra recuperarlo</p>
+            <p>¿Esta seguro de eliminar?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <button type="button" id="btn-delete-phone" v-on:click="destroyPhone" class="btn btn-danger">Eliminar</button>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -377,6 +329,13 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      aux_phone: {
+        'number': '',
+        'type_number': '',
+        'primary': false,
+        'country_code': ''
+      },
+      fadeModal: false,
       newPhone: false,
       newPhoneSubmit: {
         'number': '',
@@ -411,6 +370,12 @@ export default {
         console.log(user)
         window.$('#btn-store-phone').button('reset')
         window.$toast.success('Se han guardado correctamente los cambios')
+        this.newPhoneSubmit = {
+          'number': '',
+          'type_number': '',
+          'primary': false,
+          'country_code': ''
+        }
       })
       .catch(error => {
         console.log(error.response)
@@ -418,21 +383,26 @@ export default {
         window.$toast.error('Ha ocurrido un incoveniente')
       })
     },
-    destroyPhone (phone) {
-      window.$('#btn-store-phone').button('loading')
+    actionPhoneDelete (phone) {
+      this.aux_phone = phone
+      window.$('#delete-phone-modal').modal('show')
+    },
+    destroyPhone () {
+      window.$('#btn-delete-phone').button('loading')
       let data = {
         'userId': this.$route.params.id,
-        'id': phone.id
+        'id': this.aux_phone.id
       }
       this.deletePhone(data)
       .then(user => {
-        console.log(user)
-        window.$('#btn-store-phone').button('reset')
+        window.$('#btn-delete-phone').button('reset')
+        window.$('#delete-phone-modal').modal('hide')
         window.$toast.success('Se ha eliminado el telefono correctamente')
       })
       .catch(error => {
         console.log(error.response)
-        window.$('#btn-store-phone').button('reset')
+        window.$('#btn-delete-phone').button('reset')
+        window.$('#delete-phone-modal').modal('hide')
         window.$toast.error('Ha ocurrido un incoveniente')
       })
     },

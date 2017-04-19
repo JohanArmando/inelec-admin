@@ -2,6 +2,7 @@
   <div id="app">
     <loading-app v-if="loading"></loading-app>
     <router-view v-else></router-view>
+    <!-- Button trigger modal -->
   </div>
 </template>
 

@@ -1,1 +1,1 @@
-export const TOGGLESIDEBAR = 'clients/TOGGLESIDEBAR'
+export const TOGGLESIDEBAR = 'app/TOGGLESIDEBAR'

@@ -1,4 +1,4 @@
-export const LOGIN = 'user/LOGIN'
-export const LOGOUT = 'user/LOGOUT'
-export const SIGNUP = 'user/SIGNUP'
-export const SESSION = 'user/SESSION'
+export const LOGIN = 'auth/LOGIN'
+export const LOGOUT = 'auth/LOGOUT'
+export const SIGNUP = 'auth/SIGNUP'
+export const SESSION = 'auth/SESSION'
