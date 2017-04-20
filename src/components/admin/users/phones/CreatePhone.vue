@@ -1,84 +1,20 @@
 <template lang="html">
   <div class="">
-    <div class="widget">
-        <header class="widget-header">
-            <h4 class="widget-title">Telefonos</h4></header>
-        <hr class="widget-separator">
-          <div class="widget-body">
-            <create-phone v-bind:user="$route.params.id"></create-phone>
-          </div>
-          <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th class="text-center">Tipo</th>
-                        <th class="text-center">Codigo pais</th>
-                        <th class="text-center">Numero</th>
-                        <th class="text-center">Primario</th>
-                        <th class="text-center">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="phone in phones">
-                      <td class="text-center">{{ phone.type_number }}</td>
-                      <td class="text-center">{{ phone.country_code }}</td>
-                      <td class="text-center">{{ phone.number }}</td>
-                      <td v-if="phone.primary" class="text-center">
-                        <i class="fa fa-check"></i>
-                      </td>
-                      <td v-else class="text-danger text-center">
-                        <i class="fa fa-close"></i>
-                      </td>
-                      <td class="text-center">
-                        <button v-on:click="actionPhoneEdit(phone)" class="btn btn-default btn-xs">
-                          Editar
-                          <i class="fa fa-edit"></i>
-                        </button>
-                        <button v-on:click="actionPhoneDelete(phone)" class="btn btn-danger btn-xs">
-                          Eliminar
-                          <i class="fa fa-times-circle"></i>
-                        </button>
-                      </td>
-                    </tr>
-                </tbody>
-            </table>
-
-
-        <div class="widget-body"></div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="delete-phone-modal" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-phone">
+      <i class="fa fa-plus"></i> Crear nuevo telefono
+    </button>
+    <div class="modal fade" id="create-phone" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Desea eliminar el telefono {{ aux_phone.number }}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="">Crear Telefono</h4>
           </div>
-          <div class="modal-body">
-            <p>Al eliminar el telefono no podra recuperarlo</p>
-            <p>¿Esta seguro de eliminar?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <button type="button" id="btn-delete-phone" v-on:click="destroyPhone" class="btn btn-danger">Eliminar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="edit-phone-modal" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Editar numero de telefono</h4>
-          </div>
-          <form class='' v-on:submit.prevent="editarPhone">
+          <form class='' v-on:submit.prevent="phoneSubmit">
             <div class="modal-body">
               <div class="form-group">
-                <label for="">Tipo de telefono</label>
-                <select v-bind:value="aux_phone.type_number" v-on:input="updateValue('type_number',$event)" class="form-control " required="">
+                <label for="">Tipo de telefono {{ user }}</label>
+                <select v-model="phone.type_number" class="form-control " required="">
                   <option>Casa</option>
                   <option>Trabajo</option>
                   <option>Celular</option>
@@ -86,7 +22,7 @@
               </div>
               <div class="form-group">
                 <label for="">Codigo del pais</label>
-                <select v-bind:value="aux_phone.country_code" v-on:input="updateValue('country_code',$event)" name="countryCode" class="form-control" id="" required="">
+                <select v-model="phone.country_code" name="countryCode" class="form-control" id="" required="">
                   <option data-countryCode="CO" value="57">Colombia (+57)</option>
                   <optgroup label="Other countries">
                     <option data-countryCode="DZ" value="213">Algeria (+213)</option>
@@ -308,11 +244,11 @@
               </div>
               <div class="form-group">
                 <label for="">Numero</label>
-                <input v-bind:value="aux_phone.number" v-on:input="updateValue('number',$event)" type="number" class="form-control" name="" value="" required="">
+                <input v-model="phone.number" type="number" class="form-control" name="" value="" required="">
               </div>
               <div class="form-group">
                 <label for="">Disponible</label>
-                <select v-bind:value="aux_phone.primary" v-on:input="updateValue('primary',$event)" class="form-control" name="" required="">
+                <select v-model="phone.primary" class="form-control" name="" required="">
                   <option value="true">Principal</option>
                   <option value="false">Secundario</option>
                 </select>
@@ -323,7 +259,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="submit" id="btn-edit-phone"  class="btn btn-success">Actualizar</button>
+              <button type="submit" id="btn-store-phone"  class="btn btn-success">Guardar</button>
             </div>
           </form>
         </div>
@@ -333,26 +269,13 @@
 </template>
 
 <script>
-
-import { mapGetters, mapActions } from 'vuex'
-import CreatePhone from '@/components/admin/users/phones/CreatePhone'
+import { mapActions } from 'vuex'
 
 export default {
-  components: {
-    CreatePhone
-  },
+  props: ['user'],
   data () {
     return {
-      form_edit: {},
-      aux_phone: {
-        'number': '',
-        'type_number': '',
-        'primary': false,
-        'country_code': ''
-      },
-      fadeModal: false,
-      newPhone: false,
-      newPhoneSubmit: {
+      phone: {
         'number': '',
         'type_number': '',
         'primary': false,
@@ -360,32 +283,20 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapGetters({
-      phones: 'getPhones'
-    })
-  },
-  beforeMount () {
-    this.getPhones(this.$route.params.id).then(phones => {
-
-    })
-    .catch(message => {
-
-    })
-  },
   methods: {
     phoneSubmit () {
       window.$('#btn-store-phone').button('loading')
       let data = {
-        'userId': this.$route.params.id,
-        'phone': this.newPhoneSubmit
+        'userId': this.user,
+        'phone': this.phone
       }
       this.storePhone(data)
       .then(user => {
         console.log(user)
         window.$('#btn-store-phone').button('reset')
         window.$toast.success('Se han guardado correctamente los cambios')
-        this.newPhoneSubmit = {
+        window.$('#create-phone').modal('hide')
+        this.phone = {
           'number': '',
           'type_number': '',
           'primary': false,
@@ -395,68 +306,15 @@ export default {
       .catch(error => {
         console.log(error.response)
         window.$('#btn-store-phone').button('reset')
+        window.$('#create-phone').modal('hide')
         window.$toast.error('Ha ocurrido un incoveniente')
       })
-    },
-    actionPhoneDelete (phone) {
-      this.aux_phone = phone
-      window.$('#delete-phone-modal').modal('show')
-    },
-    actionPhoneEdit (phone) {
-      this.aux_phone = phone
-      window.$('#edit-phone-modal').modal('show')
-    },
-    editarPhone () {
-      window.$('#btn-edit-phone').button('loading')
-      this.form_edit.id = this.aux_phone.id
-      let data = {
-        'userId': this.$route.params.id,
-        'phone': this.form_edit
-      }
-      this.updatePhone(data)
-      .then(user => {
-        window.$('#btn-edit-phone').button('reset')
-        window.$('#edit-phone-modal').modal('hide')
-        window.$toast.success('Se ha actualizado el telefono correctamente')
-      })
-      .catch(error => {
-        console.log(error.response)
-        window.$('#btn-edit-phone').button('reset')
-        window.$('#edit-phone-modal').modal('hide')
-        window.$toast.error('Ha ocurrido un incoveniente')
-      })
-    },
-    destroyPhone () {
-      window.$('#btn-delete-phone').button('loading')
-      let data = {
-        'userId': this.$route.params.id,
-        'id': this.aux_phone.id
-      }
-      this.deletePhone(data)
-      .then(user => {
-        window.$('#btn-delete-phone').button('reset')
-        window.$('#delete-phone-modal').modal('hide')
-        window.$toast.success('Se ha eliminado el telefono correctamente')
-      })
-      .catch(error => {
-        console.log(error.response)
-        window.$('#btn-delete-phone').button('reset')
-        window.$('#delete-phone-modal').modal('hide')
-        window.$toast.error('Ha ocurrido un incoveniente')
-      })
-    },
-    updateValue (attribute, e) {
-      this.form_edit[attribute] = e.target.value
     },
     ...mapActions([
-      'getPhones',
-      'storePhone',
-      'deletePhone',
-      'updatePhone'
+      'storePhone'
     ])
   }
 }
-
 </script>
 
 <style lang="css">

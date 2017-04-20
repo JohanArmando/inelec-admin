@@ -9,19 +9,23 @@
             </div>
             <hr class="widget-separator">
             <div class="widget-body clearfix text-center">
-              <div class="big-icon m-b-md watermark">
+              <div class="big-icon m-b-md watermark" v-if="loading_img">
+                <div class="img-circle img-responsive center-block user-image">
+                  <h1><i class="fa fa-spin fa-spinner text-primary"></i></h1>
+                </div>
+              </div>
+              <div v-else class="big-icon m-b-md watermark">
                 <img v-if="!user.avatar_url" src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
                 <img v-else :src="user.avatar_url" alt="" class="img-circle img-responsive center-block user-image">
               </div>
 
               <div class="widget-footer">
-                <span v-if="!user.avatar" href="#">
+                <span>
                   <input type="file" class="hidden" id="file" @change="onFileChange">
                   <label for="file" class="btn btn-primary">
                       Cambiar imagen
                   </label>
                 </span>
-                <button v-else @click="removeImage" class="btn btn-primary text-center">Remover imagen</button>
               </div>
               <p class="text-muted m-b-lg">
                 Identificacion: {{ user.identity }}<br>
@@ -33,8 +37,7 @@
           <div class="widget">
             <router-link class="list-group-item" v-bind:class="{'active-inelec-v': this.$route.path == '/admin/users/'+$route.params.id }" :to="'/admin/users/'+$route.params.id+''">Informacion General</router-link>
             <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/phones'" >Telefonos</router-link>
-            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/permissions'" >Permisos</router-link>
-            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/history'" >Historial</router-link>
+            <router-link class="list-group-item" active-class="active-inelec-v" :to="'/admin/users/'+$route.params.id+'/permissions'" >Roles y permisos</router-link>
           </div>
         </div>
         <div class="col-lg-9 col-md-8">
@@ -58,6 +61,12 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  data () {
+    return {
+      new_avatar: '',
+      loading_img: false
+    }
+  },
   computed: {
     ...mapGetters({
       user: 'getCurrentUser'
@@ -84,16 +93,31 @@ export default {
       var reader = new FileReader()
       var vm = this
       reader.onload = (e) => {
-        vm.user.avatar = e.target.result
+        vm.new_avatar = e.target.result
+        let user = {
+          'id': vm.user.id,
+          'avatar': vm.new_avatar
+        }
+        vm.loading_img = true
+        vm.updateUser(user)
+        .then(() => {
+          vm.loading_img = false
+          window.$toast.success('Se ha cambiado la imagen correctamente')
+        })
+        .error(() => {
+          vm.loading_img = false
+          window.$toast.error('Ha ocurrido un inconveniente')
+        })
       }
       reader.readAsDataURL(file)
     },
     removeImage: function (e) {
-      this.user.avatar = ''
+      this.new_avatar = ''
     },
     ...mapActions([
       'storeUser',
-      'getUser'
+      'getUser',
+      'updateUser'
     ]),
     saveUser () {
       this.storeUser(this.user).then(user => {

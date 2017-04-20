@@ -20,3 +20,8 @@ export function isLoging (to, from, next) {
 export function isAdmin (to, from, next) {
   next('/admin')
 }
+
+export function notFound (to, from, next) {
+  window.$toast.error('La pagina socilitada no existe')
+  next('/admin')
+}
