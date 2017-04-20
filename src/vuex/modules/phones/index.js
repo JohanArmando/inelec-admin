@@ -33,7 +33,15 @@ const mutations = {
     })
   },
   [UPDATE] (state, phone) {
-    state.current_phone = phone
+    let phones = []
+    state.phones.forEach(p => {
+      if (phone.id !== p.id) {
+        phones.push(p)
+      } else {
+        phones.push(phone)
+      }
+    })
+    state.phones = phones
   }
 }
 

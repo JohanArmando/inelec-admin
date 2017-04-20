@@ -50,9 +50,9 @@ export function storePhone ({ commit }, data) {
   })
 }
 
-export function updatePhone ({ commit }, userId, id, phone) {
+export function updatePhone ({ commit }, data) {
   return new Promise((resolve, reject) => {
-    axios.put('/admin/users/' + userId + '/phones/' + id, phone)
+    axios.put('/admin/users/' + data.userId + '/phones/' + data.phone.id, data.phone)
     .then(response => {
       commit(UPDATE, response.data)
       resolve(response.data)

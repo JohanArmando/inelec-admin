@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { requireAuth, isLoging } from '../services/RoutesServices'
+import { requireAuth, isLoging, notFound } from '../services/RoutesServices'
 import Login from '@/components/auth/Login'
 import Recovery from '@/components/auth/Recovery'
 import Admin from '@/components/admin/Admin'
@@ -164,6 +164,13 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: '*',
+      beforeEnter: notFound,
+      component: {
+        template: '<div>No found</div>'
+      }
     }
   ]
 })
