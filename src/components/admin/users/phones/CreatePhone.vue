@@ -1,8 +1,10 @@
 <template lang="html">
   <div class="">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-phone">
-      <i class="fa fa-plus"></i> Crear nuevo telefono
-    </button>
+    <div class="m-b-lg">
+      <button type="button" class="btn action-panel-btn btn-default btn-block" data-toggle="modal" data-target="#create-phone">
+        Crear nuevo telefono
+      </button>
+    </div>
     <div class="modal fade" id="create-phone" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

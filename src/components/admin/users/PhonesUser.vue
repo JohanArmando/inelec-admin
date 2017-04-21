@@ -1,14 +1,16 @@
 <template lang="html">
-  <div class="">
-    <div class="widget">
+  <div class="row">
+    <div class="col-md-3">
+      <create-phone v-bind:user="$route.params.id"></create-phone>
+    </div>
+    <div class="col-md-12">
+
+      <div class="widget">
         <header class="widget-header">
-            <h4 class="widget-title">Telefonos</h4></header>
+        <h4 class="widget-title">Telefonos</h4></header>
         <hr class="widget-separator">
-          <div class="widget-body">
-            <create-phone v-bind:user="$route.params.id"></create-phone>
-          </div>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table v-if="phones.length > 0" class="table table-striped">
                 <thead>
                     <tr>
                         <th class="text-center">Tipo</th>
@@ -42,10 +44,12 @@
                     </tr>
                 </tbody>
             </table>
-
-
-        <div class="widget-body"></div>
+            <div v-else class="widget-body">
+              <h4 class="text-center">Sin telefonos</h4>
+            </div>
+          <div class="widget-body"></div>
         </div>
+      </div>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="delete-phone-modal" role="dialog" aria-labelledby="myModalLabel">

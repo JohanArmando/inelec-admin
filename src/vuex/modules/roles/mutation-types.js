@@ -1,0 +1,5 @@
+export const GETALL = 'phones/GETALL'
+export const GET = 'phones/GET'
+export const STORE = 'phones/STORE'
+export const DELETE = 'phones/DELETE'
+export const UPDATE = 'phones/UPDATE'

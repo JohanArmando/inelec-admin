@@ -5,6 +5,8 @@ import clients from './modules/clients'
 import app from './modules/app'
 import users from './modules/users'
 import phones from './modules/phones'
+import roles from './modules/roles'
+import sections from './modules/sections'
 
 Vue.use(Vuex)
 
@@ -16,7 +18,9 @@ export default new Vuex.Store({
     clients,
     app,
     users,
-    phones
+    phones,
+    roles,
+    sections
   },
   strict: debug
 })

@@ -1,6 +1,7 @@
 <template lang="html">
   <div class="widget">
-
+    <header class="widget-header"><h4 class="widget-title">{{ user.name }} {{ user.last_name }}</h4></header>
+    <hr class="widget-separator">
     <div class="widget-body clearfix text-center">
       <div class="big-icon m-b-md watermark">
         <img v-if="!user.avatar_url" src='../../../assets/logo/user.png' class="img-circle img-responsive center-block user-image" alt="">
