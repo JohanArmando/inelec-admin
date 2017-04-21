@@ -53,10 +53,10 @@
               </router-link>
             </li>
             <li class='has-submenu' v-bind:class="{'open': subIsActive('/admin/emails')}">
-              <a href=''>
-                <i class='menu-icon fa fa-envelope-o'></i>
-                <span class='menu-text'>Correos</span>
-              </a>
+              <router-link to="/admin/emails">
+                <i class="menu-icon fa fa-envelope-o"></i>
+                <span class="menu-text">Correos</span>
+              </router-link>
             </li>
             <li class='has-submenu'  v-bind:class="{'open': subIsActive('/admin/web')}">
               <a class='submenu-toggle' href='javascript:void(0)'>

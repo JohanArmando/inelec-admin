@@ -17,6 +17,8 @@ import Listbudget from '@/components/admin/budgets/Listbudget'
 import Newbudget from '@/components/admin/budgets/Newbudget'
 import Contacts from '@/components/admin/Contacts'
 import ListContacts from '@/components/admin/contacts/ListContacts'
+import Emails from '@/components/admin/Emails'
+import ListEmails from '@/components/admin/emails/ListEmails'
 
 export default {
   path: '/admin',
@@ -137,6 +139,17 @@ export default {
           path: '',
           component: ListContacts
         }
+      ]
+    },
+    {
+      path: 'emails',
+      component: Emails,
+      children: [
+        {
+          path: '',
+          component: ListEmails
+        }
+
       ]
     }
   ]

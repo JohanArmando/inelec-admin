@@ -27,7 +27,7 @@
                 </div>
               </div>
             <div id="contacts-list" class="row">
-              <div class="col-sm-5">
+              <div class="col-sm-6">
                 <div class="user-card contact-item p-md">
                     <div class="media">
                         <div class="media-left">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading title-color">Nombre de la empresa o persona</h5>
+                            <h5 class="media-heading title-color">nombre contacto</h5>
                             <small class="media-meta">cargo</small>
                             <div class="contact-links m-t-sm">
                               <i class="fa fa-phone"></i> (+57) 1234-5678
@@ -44,11 +44,15 @@
                               <i class="fa fa-envelope"></i> email@email.co
                             </div>
                         </div>
+                        <div class="contact-item-actions">
+                          <button type="button" name="button" class="btn btn-default" data-toggle="modal" data-target="#modalContact"><i class="fa fa-edit"></i></button>
+                          <button type="button" name="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteContact"><i class="fa fa-trash-o"></i></button>
+                        </div>
                     </div>
 
                 </div>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-6">
                 <div class="user-card contact-item p-md">
                     <div class="media">
                         <div class="media-left">
@@ -57,7 +61,7 @@
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading title-color">Nombre de la empresa o persona</h5>
+                            <h5 class="media-heading title-color">nombre contacto</h5>
                             <small class="media-meta">cargo</small>
                             <div class="contact-links m-t-sm">
                               <i class="fa fa-phone"></i> (+57) 1234-5678
@@ -71,7 +75,7 @@
               </div>
             </div>
             <div id="contacts-list" class="row">
-              <div class="col-sm-5">
+              <div class="col-sm-6">
                 <div class="user-card contact-item p-md">
                     <div class="media">
                         <div class="media-left">
@@ -80,7 +84,7 @@
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading title-color">Nombre de la empresa o persona</h5>
+                            <h5 class="media-heading title-color">nombre contacto</h5>
                             <small class="media-meta">cargo</small>
                             <div class="contact-links m-t-sm">
                               <i class="fa fa-phone"></i> (+57) 1234-5678
@@ -89,10 +93,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-6">
                 <div class="user-card contact-item p-md">
                     <div class="media">
                         <div class="media-left">
@@ -101,7 +104,7 @@
                             </div>
                         </div>
                         <div class="media-body">
-                            <h5 class="media-heading title-color">Nombre de la empresa o persona</h5>
+                            <h5 class="media-heading title-color">nombre contacto</h5>
                             <small class="media-meta">cargo</small>
                             <div class="contact-links m-t-sm">
                               <i class="fa fa-phone"></i> (+57) 1234-5678
@@ -114,10 +117,51 @@
                 </div>
               </div>
             </div>
+            <div id="contacts-list" class="row">
+              <div class="col-sm-6">
+                <div class="user-card contact-item p-md">
+                  <div class="media">
+                    <div class="media-left">
+                      <div class="avatar avatar-xl avatar-circle">
+                        <i class="fa fa-user-circle fa-4x"></i>
+                      </div>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="media-heading title-color">nombre contacto</h5>
+                      <small class="media-meta">cargo</small>
+                      <div class="contact-links m-t-sm">
+                        <i class="fa fa-phone"></i>
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="user-card contact-item p-md">
+                  <div class="media">
+                    <div class="media-left">
+                      <div class="avatar avatar-xl avatar-circle">
+                        <i class="fa fa-user-circle fa-4x"></i>
+                      </div>
+                    </div>
+                    <div class="media-body">
+                      <h5 class="media-heading title-color">nombre contacto</h5>
+                      <small class="media-meta">Cargo</small>
+                      <div class="contact-link m-t-sm">
+                        <i class="fa fa-phone"></i>
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="row">
             <pagination-list></pagination-list>
           </div>
+
           <!-- modal add contact -->
           <div id="modalContact" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
             <div class="modal-dialog" role="document">
@@ -146,6 +190,31 @@
             </div>
           </div>
           <!-- Fin -->
+
+          <!-- modal delete contact -->
+          <div id="modalDeleteContact" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="panel panel-danger">
+                  <div class="panel-heading">
+                    <h5 class="panel-title">CRM Inelec S.A.S</h5>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <p class="text-center" style="font-size: 16px;"> ¿Deseas Eliminar realmente este contacto de la base de Datos? </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" name="button" class="btn btn-default btn-xs"><i class="fa fa-check"></i> Si</button>
+                  <button type="button" name="button" class="btn btn-danger btn-xs" data-dismiss="modal"><i class="fa fa-times-circle"></i> No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin -->
+
+
+
+
 
         </div>
       </div>

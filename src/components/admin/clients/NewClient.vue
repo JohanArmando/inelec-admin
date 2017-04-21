@@ -5,14 +5,14 @@
       <div class='col-md-3'>
         <div class='widget'>
           <header class='widget-header'>
-            <h4 class='widget-title'>Perfil Usuario</h4>
+            <h4 class='widget-title'>Perfil Cliente</h4>
           </header>
           <hr class='widget-separator'>
           <div class='widget-body text-center'>
             <div class='big-icon m-b-md watermark'>
               <i class='fa fa-5x fa-user-circle'></i>
             </div>
-            <h4 class='m-b-md'>Nombre del Usuario</h4>
+            <h4 class='m-b-md'>Nombre del Cliente</h4>
             <p>Cargo:</p>
             <a class='btn p-v-xl btn-primary' href='#'>Agregar Imagen de Perfil</a>
           </div>
@@ -21,7 +21,7 @@
       <div class='col-md-9'>
         <div class='widget'>
           <header class='widget-header'>
-            <h4 class='widget-title'>Informacion Adicional de Usuario</h4>
+            <h4 class='widget-title'>Informacion Adicional de Cliente </h4>
           </header>
           <hr class='widget-separator'>
           <div class='widget-body'>
